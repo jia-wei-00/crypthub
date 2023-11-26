@@ -1,0 +1,299 @@
+@import "../variables";
+
+.container {
+  min-height: calc(100vh - 64px);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.chart-container {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+  min-height: 400px;
+
+  .floating-icon {
+    display: none;
+  }
+
+  & > div:first-child {
+    flex-grow: 1;
+
+    @media only screen and (max-width: 1023px) {
+      height: calc(100vh - 250px);
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+    flex-direction: column;
+    min-height: unset;
+
+    .floating-icon {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > button {
+        background-color: $light-bg;
+      }
+
+      &:focus {
+        background-color: $light-bg;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
+
+.chart {
+  flex: 1;
+  width: 100%;
+}
+
+.button-group {
+  & > button {
+    flex-grow: 1;
+  }
+}
+
+.ohlc {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.details {
+  & > .arrow-up {
+    display: none;
+  }
+
+  @media only screen and (max-width: 1023px) {
+    .ohlc {
+      display: none;
+    }
+
+    .show {
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: 20px 0;
+    }
+
+    .arrow-up {
+      display: unset;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.action-column {
+  background-color: $main-color-d;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.6);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  margin-left: 20px;
+  width: 300px;
+  min-height: calc(100vh - 130px);
+  position: relative;
+
+  @media only screen and (max-width: 1023px) {
+    width: auto;
+    margin: 10px 0;
+    min-height: 170px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+  }
+}
+
+.side-bar {
+  padding: 10px;
+  height: 97.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > .side-bar-details {
+    display: grid;
+    row-gap: 20px;
+  }
+
+  & > .side-bar-input {
+    display: grid;
+    row-gap: 10px;
+
+    & > .amount {
+      display: flex;
+
+      & > div {
+        padding-top: 10px;
+      }
+    }
+
+    input {
+      text-align: center;
+    }
+
+    @media only screen and (max-width: 1023px) {
+      height: 150px;
+    }
+  }
+
+  @media only screen and (max-width: 1023px) {
+    height: 100%;
+    flex-grow: 1;
+  }
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: lightgreen;
+}
+
+.price-item {
+  :nth-child(2) {
+    width: 200px;
+  }
+}
+
+#light {
+  div {
+    color: $third-color;
+  }
+
+  button {
+    color: $third-color;
+
+    &:disabled {
+      background-color: gray;
+      color: #999999;
+
+      & > svg {
+        color: #999999;
+      }
+    }
+  }
+
+  label {
+    color: $third-color;
+  }
+
+  .action-column {
+    background-color: $light-bg;
+    color: $main-color;
+
+    svg {
+      color: $third-color;
+    }
+  }
+}
+
+.card {
+  background-color: $main-color-d;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: $box-shadow;
+
+  & > .buy-sell-toggle {
+    position: relative;
+    display: flex;
+
+    & > button {
+      flex-grow: 1;
+      z-index: 2;
+    }
+  }
+
+  .amount {
+    display: flex;
+    margin: 20px 0 10px 0;
+
+    input {
+      text-align: center;
+    }
+
+    @media only screen and (max-width: 1023px) {
+      margin: 10px 0 0 0;
+
+      & > div {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .side-bar-input {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    & > .deposit-input-box {
+      display: flex;
+      text-align: center;
+      margin-top: 20px;
+      align-items: center;
+      justify-content: center;
+
+      & > div {
+        flex-grow: 1;
+      }
+
+      input {
+        text-align: center;
+      }
+    }
+  }
+
+  .indicator {
+    position: absolute;
+    height: 100%;
+    border-radius: 5px;
+    width: 50%;
+    left: 0;
+  }
+
+  @media only screen and (max-width: 1023px) {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+#light {
+  .card {
+    background-color: $light-bg;
+  }
+
+  .buy-sell-toggle {
+    button {
+      color: $black;
+    }
+  }
+}
+
+#dark {
+  .indicator {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}

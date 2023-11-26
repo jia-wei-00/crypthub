@@ -1,0 +1,113 @@
+@import "../variables";
+
+.profile-box {
+  display: flex;
+  flex-grow: 1;
+  background-color: $main-color-d;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: $box-shadow;
+  min-height: calc(100vh - 135px);
+
+  .date {
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+
+    @media only screen and (max-width: 460px) {
+      flex-direction: column;
+      row-gap: 10px;
+    }
+  }
+
+  .tabpanel {
+    flex-grow: 1;
+  }
+
+  @media only screen and (max-width: 1023px) {
+    flex-direction: column;
+  }
+}
+
+.table-container {
+  height: calc(100vh - 250px);
+  position: relative;
+
+  .absolute-middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+}
+
+.reset-password-form {
+  box-shadow: $box-shadow;
+  padding: 30px;
+  display: grid;
+  row-gap: 25px;
+  border-radius: 20px;
+  max-width: 400px;
+
+  .box {
+    display: flex;
+    align-items: end;
+
+    & > div {
+      flex-grow: 1;
+    }
+
+    & > .icon {
+      padding: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 370px) {
+    padding: 20px 10px;
+  }
+}
+
+table {
+  text-transform: capitalize;
+}
+
+@media only screen and (max-width: 370px) {
+  .tab-box {
+    padding: 20px 0 !important;
+  }
+}
+
+#dark {
+  th {
+    background-color: black;
+  }
+}
+
+#light {
+  .profile-box {
+    background-color: $third-color;
+
+    button {
+      color: $black;
+
+      &:hover {
+        background-color: $main-color;
+      }
+    }
+
+    div {
+      color: $black;
+    }
+
+    input {
+      color: $black;
+    }
+
+    label {
+      color: $black;
+    }
+  }
+}

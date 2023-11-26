@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+@import "./variables.scss";
+@import "./_mixins.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  transition: $transition;
+
+  //Remove increase decrease button inside input field type number
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+#light,
+#dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+}
+
+body {
+  #light {
+    background: $main-color;
+    color: $black;
+
+    a {
+      color: $third-color;
+    }
+
+    .link {
+      &:after {
+        background-color: $third-color;
+      }
+    }
+  }
+
+  #dark {
+    background: rgb(44, 54, 57);
+    background: linear-gradient(
+      43deg,
+      rgba(44, 54, 57, 1) 0%,
+      rgba(44, 54, 57, 1) 26%,
+      rgba(65, 77, 81, 1) 61%,
+      rgba(95, 107, 110, 1) 100%
+    );
+    color: $white;
+
+    a {
+      color: $white;
+    }
+
+    .link {
+      &:after {
+        background-color: $white;
+      }
+    }
+  }
+}
+
+a {
+  color: $black;
+  text-decoration: none;
+  position: relative;
+}
+
+.link {
+  column-gap: 10px;
+
+  &:after {
+    position: absolute;
+    content: "";
+    display: block;
+    transition: $transition-all;
+    height: 1px;
+    left: 0;
+    width: 0;
+    bottom: 0;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.mt-5 {
+  margin-top: 5px !important;
+}
+
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+.ml-10 {
+  margin-left: 10px !important;
+}
+
+.ml-5 {
+  margin-left: 5px !important;
+}
+
+.mr-10 {
+  margin-right: 10px !important;
+}
+
+.mr-5 {
+  margin-right: 5px !important;
+}
+
+.f-1 {
+  flex: 1 !important;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.Toastify__toast {
+  backdrop-filter: blur(3px);
+}
+
+.custom-introjs-theme {
+  background-color: $black-half !important;
+  backdrop-filter: blur(4px) !important;
+  color: $white !important;
+}
+
+.custom-introjs-highlight {
+  border: 0.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.introjs-progressbar {
+  background-color: $main-color-d !important;
+}
+
+.introjs-skipbutton:hover {
+  color: $white !important;
+}
+
+.introjs-arrow {
+  border-bottom-color: $black-half !important;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 4px;
+  background: $black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $white;
+  -webkit-border-radius: 1ex;
+}
+
+#light {
+  .Toastify__toast {
+    background-color: rgba($main-color, 0.7);
+  }
+
+  .Toastify__toast-body {
+    & > div {
+      color: $light-bg;
+    }
+  }
+
+  .Toastify__close-button {
+    color: $light-bg;
+  }
+
+  ::-webkit-scrollbar {
+    background: $main-color;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $light-bg;
+  }
+}
+
+#dark {
+  .Toastify__toast {
+    background-color: rgba($black, 0.5);
+  }
+
+  .custom-introjs-theme {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(4px) !important;
+    color: white !important;
+  }
+
+  .custom-introjs-highlight {
+    border: 0.5px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .introjs-progressbar {
+    background-color: $main-color-d !important;
+  }
+
+  .introjs-skipbutton:hover {
+    color: white !important;
+  }
+}
