@@ -1,0 +1,55 @@
+.swiper {
+  margin: 20px;
+  padding: 20px 10px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.swiper-button-next {
+  color: white;
+
+  &:after {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  @media only screen and (min-width: 660px) {
+    margin-right: -30px;
+  }
+}
+
+.swiper-button-prev {
+  color: white;
+
+  &:after {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  @media only screen and (min-width: 660px) {
+    margin-left: -30px;
+  }
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.swiper-pagination {
+  margin-bottom: -20px;
+}
+
+.my-swiper {
+  p {
+    margin: 10px 0;
+    text-align: center;
+  }
+}

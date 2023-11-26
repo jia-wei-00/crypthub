@@ -1,0 +1,32 @@
+@import "../variables";
+
+.scroller-section {
+  position: absolute;
+  bottom: 0;
+}
+
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100vw;
+
+  span {
+    display: block;
+    margin-right: 30px;
+  }
+
+  .scroller {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: $text-normal;
+    display: flex;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
