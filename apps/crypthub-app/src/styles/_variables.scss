@@ -1,0 +1,25 @@
+// Global Color
+$main-color: #f6e6cb;
+$third-color: #e9e0d1;
+$light-bg: #a27b5c;
+$main-color-d: #3f4e4f;
+$white: #ffffff;
+$black: black;
+$black-half: rgba(0, 0, 0, 0.5);
+$white-half: rgba(255, 255, 255, 0.5);
+$green: green;
+$red: red;
+
+// Global transition
+$transition-all: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+$box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+
+// Global Font Size
+$text-extra-small: 0.8rem;
+$text-small: 1rem;
+$text-normal: 1.2rem;
+$text-medium: 2.4rem;
+$text-large: 3.2rem;
+$text-extra-large: 4.8rem;
+$text-title: 6.4rem;
