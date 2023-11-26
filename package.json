@@ -2,7 +2,9 @@
   "name": "@crypthub/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx serve crypthub-app"
+  },
   "private": true,
   "dependencies": {
     "@swc/helpers": "~0.5.2",
