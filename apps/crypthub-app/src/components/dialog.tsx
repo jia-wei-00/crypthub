@@ -14,9 +14,9 @@ import {
   DialogTitle,
   Divider,
   useMediaQuery,
-} from "@mui/material";
-import { BooleanState, HandleModalReducerT, SellOnMarketT } from "../types";
-import { motion } from "framer-motion";
+} from '@mui/material';
+import { BooleanState, HandleModalReducerT, SellOnMarketT } from '../types';
+import { motion } from 'framer-motion';
 import {
   websocketStore,
   modeStore,
@@ -24,19 +24,19 @@ import {
   modalStore,
   tourStore,
   walletStore,
-} from "../stores";
-import LoginForm from "./login-form";
-import RegisterForm from "./register-form";
-import { ArrowRightAlt, CandlestickChart, Timeline } from "@mui/icons-material";
-import { observer } from "mobx-react-lite";
-import React from "react";
-import ForgotPasswordForm from "./forget-password";
-import DepositForm from "./deposit-form";
-import WithdrawForm from "./withdraw-form";
-import SellOnMarketForm from "./sell-on-market-form";
-import { MODALACTIONS } from "../constant";
-import { useNavigate } from "react-router-dom";
-import "../styles/components/dialog.scss";
+} from '../stores';
+import LoginForm from './login-form';
+import RegisterForm from './register-form';
+import { ArrowRightAlt, CandlestickChart, Timeline } from '@mui/icons-material';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import ForgotPasswordForm from './forget-password';
+import DepositForm from './deposit-form';
+import WithdrawForm from './withdraw-form';
+import SellOnMarketForm from './sell-on-market-form';
+import { MODALACTIONS } from '../constant';
+import { useNavigate } from 'react-router-dom';
+import '../styles/components/dialog.scss';
 
 export const ForgotPasswordDialog: React.FC<HandleModalReducerT> = ({
   modal,
@@ -53,8 +53,8 @@ export const ForgotPasswordDialog: React.FC<HandleModalReducerT> = ({
       }
       PaperProps={{
         style: {
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
       }}
     >
@@ -77,8 +77,8 @@ export const AuthDialog: React.FC<HandleModalReducerT> = observer(
         onClose={() => authStore.setAuthModal(false)}
         PaperProps={{
           style: {
-            backgroundColor: "transparent",
-            boxShadow: "none",
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
           },
         }}
       >
@@ -90,7 +90,7 @@ export const AuthDialog: React.FC<HandleModalReducerT> = observer(
                   onClick={() =>
                     dispatch({
                       type: MODALACTIONS.AUTHACTIVE,
-                      payload: "login",
+                      payload: 'login',
                     })
                   }
                 >
@@ -100,7 +100,7 @@ export const AuthDialog: React.FC<HandleModalReducerT> = observer(
                   onClick={() =>
                     dispatch({
                       type: MODALACTIONS.AUTHACTIVE,
-                      payload: "register",
+                      payload: 'register',
                     })
                   }
                 >
@@ -108,22 +108,22 @@ export const AuthDialog: React.FC<HandleModalReducerT> = observer(
                 </Button>
                 <motion.div
                   animate={
-                    modal!.auth_modal_active === "register"
-                      ? { x: "100%" }
+                    modal!.auth_modal_active === 'register'
+                      ? { x: '100%' }
                       : { x: 0 }
                   }
                   className="indicator"
                   style={
-                    modeStore.mode === "dark"
-                      ? { backgroundColor: "rgba(255, 255, 255, 0.9)" }
-                      : { backgroundColor: "#f6e6cb" }
+                    modeStore.mode === 'dark'
+                      ? { backgroundColor: 'rgba(255, 255, 255, 0.9)' }
+                      : { backgroundColor: '#f6e6cb' }
                   }
                 />
               </motion.div>
               <motion.div
                 animate={
-                  modal!.auth_modal_active === "login"
-                    ? { height: "auto" }
+                  modal!.auth_modal_active === 'login'
+                    ? { height: 'auto' }
                     : { height: 0, opacity: 0 }
                 }
               >
@@ -131,8 +131,8 @@ export const AuthDialog: React.FC<HandleModalReducerT> = observer(
               </motion.div>
               <motion.div
                 animate={
-                  modal!.auth_modal_active === "register"
-                    ? { height: "auto", marginTop: "-15px" }
+                  modal!.auth_modal_active === 'register'
+                    ? { height: 'auto', marginTop: '-15px' }
                     : { height: 0, opacity: 0 }
                 }
               >
@@ -172,7 +172,7 @@ export const ChartSettingsDialog: React.FC<BooleanState> = observer(
       <ToggleButton
         value="candles"
         key="candles"
-        disabled={websocketStore.interval === "1t"}
+        disabled={websocketStore.interval === '1t'}
       >
         <CandlestickChart />
         Candle
@@ -183,7 +183,7 @@ export const ChartSettingsDialog: React.FC<BooleanState> = observer(
       <ToggleButton
         value="1t"
         key="1t"
-        disabled={websocketStore.chart_type !== "line"}
+        disabled={websocketStore.chart_type !== 'line'}
       >
         1 tick
       </ToggleButton>,
@@ -219,15 +219,15 @@ export const ChartSettingsDialog: React.FC<BooleanState> = observer(
         onClose={() => setState(false)}
         PaperProps={{
           style: {
-            backgroundColor: "transparent",
-            boxShadow: "none",
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
           },
         }}
       >
         <div className="wrapper">
           <Card className="card">
-            <CardContent sx={{ display: "grid", rowGap: "15px" }}>
-              <FormControl sx={{ display: "flex" }}>
+            <CardContent sx={{ display: 'grid', rowGap: '15px' }}>
+              <FormControl sx={{ display: 'flex' }}>
                 <InputLabel id="demo-simple-select-autowidth-label">
                   Currency
                 </InputLabel>
@@ -262,7 +262,7 @@ export const ChartSettingsDialog: React.FC<BooleanState> = observer(
                   {...controlInterval}
                   aria-label="Medium sizes"
                   className="button-group"
-                  sx={{ flexWrap: "wrap" }}
+                  sx={{ flexWrap: 'wrap' }}
                 >
                   {interval}
                 </ToggleButtonGroup>
@@ -285,8 +285,8 @@ export const DepositDialog: React.FC<HandleModalReducerT> = ({
       onClose={() => dispatch({ type: MODALACTIONS.DEPOSIT, payload: false })}
       PaperProps={{
         style: {
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
       }}
     >
@@ -311,8 +311,8 @@ export const WithdrawDialog: React.FC<HandleModalReducerT> = ({
       onClose={() => dispatch({ type: MODALACTIONS.WITHDRAW, payload: false })}
       PaperProps={{
         style: {
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
       }}
     >
@@ -338,8 +338,8 @@ export const SellOnMarkerPlace: React.FC<SellOnMarketT> = ({
       onClose={() => setSellModal(false)}
       PaperProps={{
         style: {
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
       }}
     >
@@ -372,7 +372,7 @@ export const ConfirmationPopUp: React.FC = observer(() => {
     modalStore.setConfirmationModal(null, null, null, null, null, null, null);
   };
 
-  const matches = useMediaQuery("(max-width:450px)");
+  const matches = useMediaQuery('(max-width:450px)');
 
   const modal_props = modalStore.confirmation_modal;
   const type = modal_props.type;
@@ -380,19 +380,19 @@ export const ConfirmationPopUp: React.FC = observer(() => {
   const get_currency = modal_props.get_currency;
 
   React.useEffect(() => {
-    if (type === "delete") {
+    if (type === 'delete') {
       setWallet({
         ...wallet,
         [get_currency as keyof typeof wallet]:
           wallet[get_currency as keyof typeof wallet] + modal_props.receive!,
       });
-    } else if (type === "sell_p2p") {
+    } else if (type === 'sell_p2p') {
       setWallet({
         ...wallet,
         [pay_currency as keyof typeof wallet]:
           wallet[pay_currency as keyof typeof wallet] - modal_props.pay!,
       });
-    } else if (type === "buy_p2p" || type === "buy" || type === "sell") {
+    } else if (type === 'buy_p2p' || type === 'buy' || type === 'sell') {
       setWallet({
         ...wallet,
         [pay_currency as keyof typeof wallet]:
@@ -419,8 +419,8 @@ export const ConfirmationPopUp: React.FC = observer(() => {
       }
       PaperProps={{
         style: {
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
       }}
     >
@@ -441,20 +441,20 @@ export const ConfirmationPopUp: React.FC = observer(() => {
                 <div>
                   {modal_props.pay && (
                     <>
-                      {modal_props.pay + " " + modal_props.pay_currency!}
+                      {modal_props.pay + ' ' + modal_props.pay_currency!}
                       <br />
                     </>
                   )}
                   {modal_props.receive &&
-                    "~" +
+                    '~' +
                       modal_props.receive.toFixed(4) +
-                      " " +
+                      ' ' +
                       modal_props.get_currency!}
                 </div>
               </div>
               <div
                 className={`before-after ${
-                  modeStore.mode === "light" && "before-after-box"
+                  modeStore.mode === 'light' && 'before-after-box'
                 }`}
               >
                 <div>
@@ -473,7 +473,7 @@ export const ConfirmationPopUp: React.FC = observer(() => {
                   </div>
                 </div>
                 <ArrowRightAlt
-                  className={`arrow-icon ${matches && "rotate-arrow"}`}
+                  className={`arrow-icon ${matches && 'rotate-arrow'}`}
                 />
                 <div>
                   <div>After:</div>
@@ -483,11 +483,11 @@ export const ConfirmationPopUp: React.FC = observer(() => {
                   </div>
                   <div>
                     <span>ETH</span>
-                    {"~" + wallet.ETH.toFixed(4)}
+                    {'~' + wallet.ETH.toFixed(4)}
                   </div>
                   <div>
                     <span>BTC</span>
-                    {"~" + wallet.BTC.toFixed(4)}
+                    {'~' + wallet.BTC.toFixed(4)}
                   </div>
                 </div>
               </div>
@@ -530,7 +530,7 @@ export const TourDialog: React.FC = observer(() => {
 
   const handleOpenTour = () => {
     tourStore.setTourModal(false);
-    navigate("/");
+    navigate('/');
     tourStore.setTour({ home: true });
   };
 
@@ -539,8 +539,8 @@ export const TourDialog: React.FC = observer(() => {
       open={tourStore.tour_modal}
       PaperProps={{
         style: {
-          backgroundColor: "transparent",
-          boxShadow: "none",
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
       }}
     >
