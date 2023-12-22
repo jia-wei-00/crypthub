@@ -3,7 +3,7 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import { observer } from 'mobx-react-lite';
 import { Loading } from '../../components';
-import { modeStore, websocketStore } from '../../stores';
+import { modeStore, websocketStore } from '@crypthub/store';
 
 interface ChartTypes {
   websocketStore: typeof websocketStore;

@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev:app": "nx serve crypthub-app",
-    "dev:web": "nx serve crypthub"
+    "dev:app": "nx serve crypthub-app --open",
+    "dev:web": "nx serve crypthub --open"
   },
   "private": true,
   "dependencies": {
+    "@deriv/api-types": "^1.0.144",
+    "@deriv/deriv-api": "^1.0.13",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.1.0",

@@ -6,7 +6,7 @@ import * as path from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite/types',
+  cacheDir: '../../node_modules/.vite/chart',
 
   plugins: [
     react(),
@@ -29,7 +29,7 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
-      name: 'types',
+      name: 'chart',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
@@ -37,7 +37,15 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        '@crypthub/store',
+        '@crypthub/types',
+        '@crypthub/components',
+        '@crypthub/testing',
+      ],
     },
   },
 });

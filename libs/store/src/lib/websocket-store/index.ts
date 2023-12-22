@@ -1,8 +1,22 @@
 import { makeObservable, action, observable, runInAction } from 'mobx';
-import DerivAPIBasic from 'https://cdn.skypack.dev/@deriv/deriv-api/dist/DerivAPIBasic';
+// @ts-expect-error Deriv API
+import DerivAPIBasic from '@deriv/deriv-api/dist/DerivAPIBasic.js';
 import { makePersistable } from 'mobx-persist-store';
-import { Candlesticks, ChartData } from '@crypthub/types';
 import { toast } from 'react-toastify';
+
+export interface Candlesticks {
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  epoch?: EpochTimeStamp;
+}
+
+export interface ChartData {
+  previous: number;
+  price: number;
+  time: EpochTimeStamp;
+}
 
 class WebsocketStoreImplementation {
   chart_data: ChartData[] = [];
@@ -216,6 +230,4 @@ class WebsocketStoreImplementation {
   };
 }
 
-const websocketStore = new WebsocketStoreImplementation();
-
-export default websocketStore;
+export const websocketStore = new WebsocketStoreImplementation();

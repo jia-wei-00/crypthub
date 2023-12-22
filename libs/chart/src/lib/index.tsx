@@ -1,16 +1,11 @@
 import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
+import { websocketStore, modeStore } from '@crypthub/store';
 import { observer } from 'mobx-react-lite';
-import { Loading } from '../../components';
-import { modeStore, websocketStore } from '../../stores';
+import { Loading } from '@crypthub/components';
 
-interface ChartTypes {
-  websocketStore: typeof websocketStore;
-  modeStore: typeof modeStore;
-}
-
-const Chart: React.FC<ChartTypes> = ({ websocketStore, modeStore }) => {
+export const Chart: React.FC = observer(() => {
   React.useEffect(() => {
     if (
       websocketStore.chart_data.length === 0 &&
@@ -125,7 +120,7 @@ const Chart: React.FC<ChartTypes> = ({ websocketStore, modeStore }) => {
       {websocketStore.chart_data.length === 0 &&
       websocketStore.candlesticks.length === 0 ? (
         <div className="loading">
-          <Loading height={'50px'} width={'50px'} />
+          <Loading height={50} width={50} />
         </div>
       ) : (
         <HighchartsReact
@@ -137,6 +132,4 @@ const Chart: React.FC<ChartTypes> = ({ websocketStore, modeStore }) => {
       )}
     </>
   );
-};
-
-export default observer(Chart);
+});

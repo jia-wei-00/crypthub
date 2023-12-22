@@ -5,21 +5,22 @@ import {
   Select,
   ToggleButton,
   ToggleButtonGroup,
-} from "@mui/material";
-import React from "react";
-import { websocketStore } from "../../stores";
-import { observer } from "mobx-react-lite";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import TrendingDownIcon from "@mui/icons-material/TrendingDown";
-import "../../styles/components/action.scss";
+} from '@mui/material';
+import React from 'react';
+// import { websocketStore } from "../../stores";
+import { websocketStore } from '@crypthub/store';
+import { observer } from 'mobx-react-lite';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import '../../styles/components/action.scss';
 import {
   CandlestickChart,
   KeyboardArrowDown,
   KeyboardArrowUp,
   Timeline,
   TrendingFlat,
-} from "@mui/icons-material";
-import BuySellBox from "./buy-sell-box";
+} from '@mui/icons-material';
+import BuySellBox from './buy-sell-box';
 
 const Action: React.FC = () => {
   const [openDetails, setOpenDetails] = React.useState<boolean>(false);
@@ -55,7 +56,7 @@ const Action: React.FC = () => {
     <ToggleButton
       value="candles"
       key="candles"
-      disabled={websocketStore.interval === "1t"}
+      disabled={websocketStore.interval === '1t'}
     >
       <CandlestickChart />
       Candle
@@ -67,7 +68,7 @@ const Action: React.FC = () => {
     <ToggleButton
       value="1t"
       key="1t"
-      disabled={websocketStore.chart_type !== "line"}
+      disabled={websocketStore.chart_type !== 'line'}
     >
       1 tick
     </ToggleButton>,
@@ -147,7 +148,7 @@ const Action: React.FC = () => {
     <div className="side-bar">
       <div className="side-bar-details" id="chart-settings">
         <div className="mobile-hide">
-          <FormControl sx={{ display: "flex" }}>
+          <FormControl sx={{ display: 'flex' }}>
             <InputLabel id="demo-simple-select-autowidth-label">
               Currency
             </InputLabel>
@@ -183,7 +184,7 @@ const Action: React.FC = () => {
             {...controlInterval}
             aria-label="Medium sizes"
             className="button-group"
-            sx={{ flexWrap: "wrap" }}
+            sx={{ flexWrap: 'wrap' }}
           >
             {interval}
           </ToggleButtonGroup>
@@ -197,14 +198,14 @@ const Action: React.FC = () => {
             >
               {openDetails ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </div>
-            <div className={`ohlc ${openDetails && "show"}`}>
+            <div className={`ohlc ${openDetails && 'show'}`}>
               <div className="price-items">
                 <span>Previous Price: </span>
                 <span
                   className={`d-flex align-center mr-5 ${
                     previous_price > before_previous_price
-                      ? "green"
-                      : previous_price < before_previous_price && "red"
+                      ? 'green'
+                      : previous_price < before_previous_price && 'red'
                   }`}
                 >
                   ${previous_price}
@@ -223,8 +224,8 @@ const Action: React.FC = () => {
                 <span
                   className={`d-flex align-center ${
                     current_price > previous_price
-                      ? "green"
-                      : current_price < previous_price && "red"
+                      ? 'green'
+                      : current_price < previous_price && 'red'
                   }`}
                 >
                   ${current_price}
@@ -241,7 +242,7 @@ const Action: React.FC = () => {
           </div>
         )}
 
-        {websocketStore.interval !== "1t" && websocketStore.ohlc.length > 1 && (
+        {websocketStore.interval !== '1t' && websocketStore.ohlc.length > 1 && (
           <div className="details">
             <div
               className="arrow-up"
@@ -250,14 +251,14 @@ const Action: React.FC = () => {
               {openDetails ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </div>
 
-            <div className={`ohlc ${openDetails && "show"}`}>
+            <div className={`ohlc ${openDetails && 'show'}`}>
               <div className="price-items">
                 <span>Open:</span>
                 <span
                   className={`d-flex align-center ${
                     current_candles.open > previous_candles.open
-                      ? "green"
-                      : current_candles.open < previous_candles.open && "red"
+                      ? 'green'
+                      : current_candles.open < previous_candles.open && 'red'
                   }`}
                 >
                   ${current_candles.open}
@@ -275,8 +276,8 @@ const Action: React.FC = () => {
                 <span
                   className={`d-flex align-center ${
                     current_candles.high > previous_candles.high
-                      ? "green"
-                      : current_candles.high < previous_candles.high && "red"
+                      ? 'green'
+                      : current_candles.high < previous_candles.high && 'red'
                   }`}
                 >
                   ${current_candles.high}
@@ -294,8 +295,8 @@ const Action: React.FC = () => {
                 <span
                   className={`d-flex align-center ${
                     current_candles.low > previous_candles.low
-                      ? "green"
-                      : current_candles.low < previous_candles.low && "red"
+                      ? 'green'
+                      : current_candles.low < previous_candles.low && 'red'
                   }`}
                 >
                   ${current_candles.low}
@@ -313,8 +314,8 @@ const Action: React.FC = () => {
                 <span
                   className={`d-flex align-center ${
                     current_candles.close > previous_candles.close
-                      ? "green"
-                      : current_candles.close < previous_candles.close && "red"
+                      ? 'green'
+                      : current_candles.close < previous_candles.close && 'red'
                   }`}
                 >
                   ${current_candles.close}

@@ -1,19 +1,18 @@
 import React from 'react';
-import Chart from './chart';
 import '../../styles/pages/home.scss';
+import { Chart } from '@crypthub/chart';
 import Action from './action';
 import { Fab } from '@mui/material';
 import { Settings } from '@mui/icons-material';
 import { ChartSettingsDialog } from '../../components';
 import { motion } from 'framer-motion';
-import { modeStore, websocketStore } from '../../stores';
 
 const Home = () => {
   const [openSettings, setOpenSettings] = React.useState<boolean>(false);
 
   return (
     <div className="chart-container">
-      <Chart modeStore={modeStore} websocketStore={websocketStore} />
+      <Chart />
       <motion.div
         initial={{ opacity: 0, translateY: '100%' }}
         animate={{ opacity: 1, translateY: 0 }}
