@@ -1,26 +1,26 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme, lightTheme } from "./theme";
-import "./styles/main.scss";
-import { authStore, modeStore, tourStore } from "./stores";
-import { observer } from "mobx-react-lite";
-import { ToastContainer } from "react-toastify";
-import { Nav, TourDialog } from "./components";
-import { homeTour, pages } from "./constant";
-import { ErrorPage, Profile } from "./pages";
-import Auth from "./auth";
-import React from "react";
-import { Steps } from "intro.js-react";
-import "intro.js/introjs.css";
-import { useMediaQuery } from "@mui/material";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { darkTheme, lightTheme } from './theme';
+import './styles/main.scss';
+import { authStore, modeStore, tourStore } from '@crypthub/store';
+import { observer } from 'mobx-react-lite';
+import { ToastContainer } from 'react-toastify';
+import { Nav, TourDialog } from './components';
+import { homeTour, pages } from './constant';
+import { ErrorPage, Profile } from './pages';
+import Auth from './auth';
+import React from 'react';
+import { Steps } from 'intro.js-react';
+import 'intro.js/introjs.css';
+import { useMediaQuery } from '@mui/material';
 
 const App: React.FC = () => {
   const navigate = useNavigate();
-  const matches = useMediaQuery("(max-width:600px)");
+  const matches = useMediaQuery('(max-width:600px)');
 
   return (
     <div id={modeStore.mode}>
-      <ThemeProvider theme={modeStore.mode === "dark" ? darkTheme : lightTheme}>
+      <ThemeProvider theme={modeStore.mode === 'dark' ? darkTheme : lightTheme}>
         <Nav />
         <Auth>
           <Routes>
@@ -37,7 +37,7 @@ const App: React.FC = () => {
         </Auth>
 
         <ToastContainer
-          theme={modeStore.mode === "dark" ? "dark" : "light"}
+          theme={modeStore.mode === 'dark' ? 'dark' : 'light'}
           position="top-center"
         />
         <Steps
@@ -48,7 +48,7 @@ const App: React.FC = () => {
           options={homeTour.options}
           onBeforeExit={(step) => {
             if (step === homeTour.steps.length - 1) {
-              navigate("/p2pTrader");
+              navigate('/p2pTrader');
               setTimeout(() => {
                 tourStore.setTour({ p2p: true });
               }, 500);

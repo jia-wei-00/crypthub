@@ -1,11 +1,12 @@
-import { makeObservable, action, observable, runInAction } from "mobx";
-import DerivAPIBasic from "https://cdn.skypack.dev/@deriv/deriv-api/dist/DerivAPIBasic";
-import { makePersistable } from "mobx-persist-store";
-import { toast } from "react-toastify";
+import { makeObservable, action, observable, runInAction } from 'mobx';
+// @ts-expect-error Deriv API
+import DerivAPIBasic from '@deriv/deriv-api/dist/DerivAPIBasic.js';
+import { makePersistable } from 'mobx-persist-store';
+import { toast } from 'react-toastify';
 
 class P2PWebSocketStoreImplementation {
   ticks: number = 0;
-  currency: string = "ETH";
+  currency: string = 'ETH';
 
   constructor() {
     makeObservable(this, {
@@ -21,8 +22,8 @@ class P2PWebSocketStoreImplementation {
     });
 
     makePersistable(this, {
-      name: "p2p_tick_currency",
-      properties: ["currency"],
+      name: 'p2p_tick_currency',
+      properties: ['currency'],
       storage: window.localStorage,
     });
   }
@@ -37,7 +38,7 @@ class P2PWebSocketStoreImplementation {
 
   tickSubscribe = () =>
     this.api.subscribe({
-      ticks: this.currency === "BTC" ? "cryBTCUSD" : "cryETHUSD",
+      ticks: this.currency === 'BTC' ? 'cryBTCUSD' : 'cryETHUSD',
       subscribe: 1,
     });
 
@@ -66,11 +67,11 @@ class P2PWebSocketStoreImplementation {
       toast.error(`Error: ${data.error.message}`, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      this.connection?.removeEventListener("message", this.tickResponse, false);
+      this.connection?.removeEventListener('message', this.tickResponse, false);
       await this.api.disconnect();
     }
 
-    if (data.msg_type === "tick") {
+    if (data.msg_type === 'tick') {
       this.setTicks(data.tick.quote);
     }
   };
@@ -96,16 +97,16 @@ class P2PWebSocketStoreImplementation {
       this.api.ping();
     }, 30000);
 
-    this.connection.addEventListener("message", this.tickResponse);
+    this.connection.addEventListener('message', this.tickResponse);
   };
 
   unsubscribeTicks = async () => {
-    this.connection!.removeEventListener("message", this.tickResponse, false);
+    this.connection!.removeEventListener('message', this.tickResponse, false);
     await this.tickSubscribe().unsubscribe();
     this.resetData();
   };
 }
 
-const websocketStoreP2P = new P2PWebSocketStoreImplementation();
+export const websocketStoreP2P = new P2PWebSocketStoreImplementation();
 
 export default websocketStoreP2P;

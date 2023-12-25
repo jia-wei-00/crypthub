@@ -1,5 +1,5 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
-import { makePersistable } from "mobx-persist-store";
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { makePersistable } from 'mobx-persist-store';
 
 class TourStoreImplementation {
   tour: { home: boolean; p2p: boolean; sell_p2p: boolean } = {
@@ -18,8 +18,8 @@ class TourStoreImplementation {
     });
 
     makePersistable(this, {
-      name: "crypthub_tour_store",
-      properties: ["tour_modal"],
+      name: 'crypthub_tour_store',
+      properties: ['tour_modal'],
       storage: window.localStorage,
     });
   }
@@ -37,6 +37,6 @@ class TourStoreImplementation {
   }
 }
 
-const tourStore = new TourStoreImplementation();
+export const tourStore = new TourStoreImplementation();
 
 export default tourStore;

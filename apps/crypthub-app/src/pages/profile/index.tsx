@@ -1,13 +1,13 @@
-import { Box, Tab, Tabs, useMediaQuery } from "@mui/material";
-import React from "react";
-import "../../styles/pages/profile.scss";
-import TransactionHistory from "./transaction-history";
-import ResetPasswordForm from "./reset-password";
-import WalletHistoryT from "./wallet-history";
-import P2PHistory from "./p2p-history";
-import { useNavigate } from "react-router-dom";
-import { authStore, historyStore } from "../../stores";
-import { observer } from "mobx-react-lite";
+import { Box, Tab, Tabs, useMediaQuery } from '@mui/material';
+import React from 'react';
+import '../../styles/pages/profile.scss';
+import TransactionHistory from './transaction-history';
+import ResetPasswordForm from './reset-password';
+import WalletHistoryT from './wallet-history';
+import P2PHistory from './p2p-history';
+import { useNavigate } from 'react-router-dom';
+import { authStore, historyStore } from '@crypthub/store';
+import { observer } from 'mobx-react-lite';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -39,7 +39,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
 
@@ -51,12 +51,12 @@ const Profile = () => {
     setValue(newValue);
   };
 
-  const matches = useMediaQuery("(min-width:1023px)");
+  const matches = useMediaQuery('(min-width:1023px)');
   const navigate = useNavigate();
 
   React.useEffect(() => {
     if (authStore.user === null) {
-      navigate("/");
+      navigate('/');
     }
   }, [authStore.user]);
 
@@ -69,14 +69,14 @@ const Profile = () => {
   return (
     <Box className="profile-box">
       <Tabs
-        orientation={matches ? "vertical" : "horizontal"}
+        orientation={matches ? 'vertical' : 'horizontal'}
         value={value}
         onChange={handleChange}
         aria-label="vertial_tabs_table"
         variant="scrollable"
         scrollButtons="auto"
         allowScrollButtonsMobile
-        sx={{ borderRight: 1, borderColor: "divider" }}
+        sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         <Tab label="Transaction History" {...a11yProps(0)} />
         <Tab label="Wallet History" {...a11yProps(1)} />

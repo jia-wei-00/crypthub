@@ -1,16 +1,16 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
-import { toast } from "react-toastify";
-import { authStore, walletStore, websocketStoreP2P } from ".";
-import { AddP2PContractFormT, P2PContractsT, Wallet } from "../types";
-import { createTimeoutPromise, firebaseError } from "../functions";
-import db, { union } from "../firebase";
-import firebase from "firebase/compat/app";
-import { FirebaseError } from "@firebase/util";
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { toast } from 'react-toastify';
+import { authStore, walletStore, websocketStoreP2P } from '../..';
+import { AddP2PContractFormT, P2PContractsT, Wallet } from '../../types';
+import { createTimeoutPromise, firebaseError } from '../../functions';
+import db, { union } from '../../firebase';
+import firebase from 'firebase/compat/app';
+import { FirebaseError } from '@firebase/util';
 
 class P2PStoreImplementation {
   p2p_contracts: P2PContractsT[] = [];
   p2p_ongoing_contracts: P2PContractsT[] = [];
-  db_p2p_market = db.collection("p2p_market");
+  db_p2p_market = db.collection('p2p_market');
 
   constructor() {
     makeObservable(this, {
@@ -43,7 +43,7 @@ class P2PStoreImplementation {
     values: AddP2PContractFormT,
     setSellModal: React.Dispatch<React.SetStateAction<boolean>>
   ): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
     const data = {
       currency: websocketStoreP2P.currency,
       coin_amount: values.coin_amount,
@@ -64,8 +64,8 @@ class P2PStoreImplementation {
       });
 
       toast.update(id, {
-        render: "Contract created successfully",
-        type: "success",
+        render: 'Contract created successfully',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -75,7 +75,7 @@ class P2PStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -84,11 +84,11 @@ class P2PStoreImplementation {
   }
 
   async buyContract(values: P2PContractsT): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
 
     try {
       if (values.selling_price > walletStore.wallet.USD) {
-        throw new Error("Insufficient balance");
+        throw new Error('Insufficient balance');
       }
 
       this.updateSeller(values);
@@ -104,11 +104,11 @@ class P2PStoreImplementation {
         },
       });
 
-      this.updateP2PHistory(values, "bought");
+      this.updateP2PHistory(values, 'bought');
 
       toast.update(id, {
-        render: "Buy contract successful",
-        type: "success",
+        render: 'Buy contract successful',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -116,7 +116,7 @@ class P2PStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -125,7 +125,7 @@ class P2PStoreImplementation {
   }
 
   async withdrawContract(values: P2PContractsT): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
 
     try {
       await this.db_p2p_market.doc(values.contract_id).delete();
@@ -138,11 +138,11 @@ class P2PStoreImplementation {
         },
       });
 
-      this.updateP2PHistory(values, "deleted");
+      this.updateP2PHistory(values, 'deleted');
 
       toast.update(id, {
-        render: "Contract deleted successfully",
-        type: "success",
+        render: 'Contract deleted successfully',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -150,7 +150,7 @@ class P2PStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -184,7 +184,7 @@ class P2PStoreImplementation {
     try {
       await Promise.race([
         this.db_p2p_market
-          .where("seller_id", "==", authStore.user.id)
+          .where('seller_id', '==', authStore.user.id)
           .onSnapshot((snapshot) => {
             const payload = snapshot.docs.map((doc) => {
               const data = doc.data();
@@ -204,14 +204,14 @@ class P2PStoreImplementation {
   }
 
   async updateSeller(values: P2PContractsT) {
-    const seller = db.collection("user_data").doc(values.seller_id);
+    const seller = db.collection('user_data').doc(values.seller_id);
     const result = await seller.get();
 
     if (result.exists) {
       const seller_wallet = result.data()!.wallet;
 
       await db
-        .collection("user_data")
+        .collection('user_data')
         .doc(values.seller_id)
         .update({
           wallet: {
@@ -220,7 +220,7 @@ class P2PStoreImplementation {
           },
         });
     } else {
-      throw new Error("Update seller wallet failed");
+      throw new Error('Update seller wallet failed');
     }
 
     await seller.update({
@@ -231,7 +231,7 @@ class P2PStoreImplementation {
         selling_price: values.selling_price,
         created_at: values.created_at,
         completed_at: firebase.firestore.Timestamp.now().seconds,
-        transaction_type: "sold",
+        transaction_type: 'sold',
       }),
     });
   }
@@ -251,6 +251,6 @@ class P2PStoreImplementation {
   }
 }
 
-const p2pStore = new P2PStoreImplementation();
+export const p2pStore = new P2PStoreImplementation();
 
 export default p2pStore;

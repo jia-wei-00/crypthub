@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
 class LoadingStoreImplementation {
   history_loading: boolean = false;
@@ -26,6 +26,6 @@ class LoadingStoreImplementation {
   }
 }
 
-const loadingStore = new LoadingStoreImplementation();
+export const loadingStore = new LoadingStoreImplementation();
 
 export default loadingStore;

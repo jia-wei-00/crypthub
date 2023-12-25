@@ -1,14 +1,14 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import {
   P2PCompletedHistoryT,
   Transaction,
   TransactionDateFromAPI,
   WalletHistoryT,
-} from "../types";
-import { authStore, loadingStore } from ".";
-import { createTimeoutPromise, firebaseError } from "../functions";
-import { toast } from "react-toastify";
-import { FirebaseError } from "@firebase/util";
+} from '../../types';
+import { authStore, loadingStore } from '../..';
+import { createTimeoutPromise, firebaseError } from '../../functions';
+import { toast } from 'react-toastify';
+import { FirebaseError } from '@firebase/util';
 
 class HistoryStoreImplementation {
   transaction: Transaction[] = [];
@@ -52,7 +52,8 @@ class HistoryStoreImplementation {
 
     try {
       await Promise.race([
-        authStore.db_user_data!.get().then((res) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        authStore.db_user_data!.get().then((res: any) => {
           const data = res.data()?.crypthub_trader_record;
 
           const reorder = data?.sort(
@@ -73,7 +74,7 @@ class HistoryStoreImplementation {
             } = data;
             let commission = commission_deduction_5;
             if (commission === 0) {
-              commission = "-";
+              commission = '-';
             }
             return {
               type,
@@ -102,7 +103,8 @@ class HistoryStoreImplementation {
     loadingStore.setHistoryLoading(true);
     try {
       await Promise.race([
-        authStore.db_user_data!.get().then((res) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        authStore.db_user_data!.get().then((res: any) => {
           const data = res.data()?.wallet_record;
 
           const reorder = data?.sort(
@@ -129,7 +131,8 @@ class HistoryStoreImplementation {
     loadingStore.setHistoryLoading(true);
     try {
       await Promise.race([
-        authStore.db_user_data?.onSnapshot((snapshot) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        authStore.db_user_data?.onSnapshot((snapshot: any) => {
           const values = snapshot
             .data()!
             .p2p_trader_record.map((value: P2PCompletedHistoryT) => {
@@ -163,6 +166,6 @@ class HistoryStoreImplementation {
   }
 }
 
-const historyStore = new HistoryStoreImplementation();
+export const historyStore = new HistoryStoreImplementation();
 
 export default historyStore;

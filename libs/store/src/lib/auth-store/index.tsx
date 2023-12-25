@@ -1,14 +1,20 @@
-import { makeObservable, action, observable, runInAction } from "mobx";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Action, InputData, ModalState, ResetPassword, User } from "../types";
-import { MODALACTIONS } from "../constant";
-import { createTimeoutPromise, firebaseError } from "../functions";
-import Cookies from "js-cookie";
-import db, { auth } from "../firebase";
-import { FirebaseError } from "@firebase/util";
-import { walletStore } from ".";
-import firebase from "firebase/compat/app";
+import { makeObservable, action, observable, runInAction } from 'mobx';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  Action,
+  InputData,
+  ModalState,
+  ResetPassword,
+  User,
+} from '../../types';
+import { MODALACTIONS } from '../constant';
+import Cookies from 'js-cookie';
+import db, { auth } from '../../firebase';
+import { FirebaseError } from '@firebase/util';
+import { walletStore } from '../..';
+import firebase from 'firebase/compat/app';
+import { createTimeoutPromise, firebaseError } from '../../functions';
 
 class AuthStoreImplementation {
   user: User | null = null;
@@ -27,7 +33,7 @@ class AuthStoreImplementation {
       reset: action.bound,
     });
 
-    const user_data = Cookies.get("crypthub_user");
+    const user_data = Cookies.get('crypthub_user');
 
     this.setUser(user_data ? JSON.parse(user_data) : null);
 
@@ -36,7 +42,7 @@ class AuthStoreImplementation {
 
   setDbUserData(id: string) {
     runInAction(() => {
-      this.db_user_data = db.collection("user_data").doc(id);
+      this.db_user_data = db.collection('user_data').doc(id);
     });
   }
 
@@ -47,7 +53,7 @@ class AuthStoreImplementation {
       walletStore.setUserWallet({ BTC: 0, ETH: 0, USD: 0 });
     });
 
-    Cookies.remove("crypthub_user");
+    Cookies.remove('crypthub_user');
   }
 
   setAuthModal(value: boolean) {
@@ -63,7 +69,7 @@ class AuthStoreImplementation {
   };
 
   async resetPassword(): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
 
     try {
       await Promise.race([
@@ -72,8 +78,8 @@ class AuthStoreImplementation {
       ]);
 
       toast.update(id, {
-        render: "Please check your email to reset password",
-        type: "success",
+        render: 'Please check your email to reset password',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -81,7 +87,7 @@ class AuthStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -90,7 +96,7 @@ class AuthStoreImplementation {
   }
 
   async signIn(values: InputData): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
 
     try {
       const { email, password } = values;
@@ -106,8 +112,8 @@ class AuthStoreImplementation {
         user.sendEmailVerification();
 
         return toast.update(id, {
-          render: "Please check your email to verify your account!",
-          type: "error",
+          render: 'Please check your email to verify your account!',
+          type: 'error',
           isLoading: false,
           autoClose: 5000,
           closeButton: null,
@@ -123,14 +129,14 @@ class AuthStoreImplementation {
         token: refreshToken,
       };
 
-      Cookies.set("crypthub_user", JSON.stringify(details), { expires: 1 });
+      Cookies.set('crypthub_user', JSON.stringify(details), { expires: 1 });
 
       this.setUser(details);
       this.setDbUserData(details.id);
 
       toast.update(id, {
         render: `Welcome ${displayName}`,
-        type: "success",
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -140,7 +146,7 @@ class AuthStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -149,13 +155,13 @@ class AuthStoreImplementation {
   }
 
   async signOut(): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
     try {
       await Promise.race([auth.signOut(), createTimeoutPromise(10000)]);
 
       toast.update(id, {
-        render: "Sign out Successfull",
-        type: "success",
+        render: 'Sign out Successfull',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -165,7 +171,7 @@ class AuthStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -174,7 +180,7 @@ class AuthStoreImplementation {
   }
 
   async signUp(values: InputData): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
     const { name, email, password } = values;
 
     try {
@@ -188,7 +194,7 @@ class AuthStoreImplementation {
         displayName: name,
       });
 
-      const docRef = db.collection("user_data").doc(userCredential.user!.uid);
+      const docRef = db.collection('user_data').doc(userCredential.user!.uid);
 
       await docRef.set({
         wallet: {
@@ -205,8 +211,8 @@ class AuthStoreImplementation {
       await userCredential.user?.sendEmailVerification();
 
       toast.update(id, {
-        render: "Please check your email to activate account!",
-        type: "success",
+        render: 'Please check your email to activate account!',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -216,7 +222,7 @@ class AuthStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -229,7 +235,7 @@ class AuthStoreImplementation {
     modal: ModalState,
     dispatch: React.Dispatch<Action>
   ): Promise<void> {
-    const id = toast.loading("Please wait...");
+    const id = toast.loading('Please wait...');
     try {
       await Promise.race([
         auth.sendPasswordResetEmail(values.email),
@@ -237,8 +243,8 @@ class AuthStoreImplementation {
       ]);
 
       toast.update(id, {
-        render: "Please check your email to reset password",
-        type: "success",
+        render: 'Please check your email to reset password',
+        type: 'success',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -250,7 +256,7 @@ class AuthStoreImplementation {
     } catch (error: unknown) {
       toast.update(id, {
         render: firebaseError(error as FirebaseError),
-        type: "error",
+        type: 'error',
         isLoading: false,
         autoClose: 5000,
         closeButton: null,
@@ -259,6 +265,6 @@ class AuthStoreImplementation {
   }
 }
 
-const authStore = new AuthStoreImplementation();
+export const authStore = new AuthStoreImplementation();
 
 export default authStore;

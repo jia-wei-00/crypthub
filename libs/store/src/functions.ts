@@ -1,7 +1,22 @@
 import axios, { AxiosError } from 'axios';
 import { authStore, p2pStore } from '@crypthub/store';
-import { ErrorResponse, P2PContractsT } from './types';
 import { FirebaseError } from '@firebase/util';
+
+export type ErrorResponse = {
+  message: string;
+  errors: {
+    msg: string;
+  }[];
+};
+
+export type P2PContractsT = {
+  coin_amount: number;
+  contract_id: string;
+  created_at: number;
+  currency: string;
+  seller_id: string;
+  selling_price: number;
+};
 
 export const createTimeoutPromise = (timeout: number): Promise<never> => {
   return new Promise((_, reject) => {

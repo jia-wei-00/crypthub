@@ -5,10 +5,10 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
-} from "@mui/material";
-import { motion } from "framer-motion";
-import React from "react";
-import { authStore } from "../../stores";
+} from '@mui/material';
+import { motion } from 'framer-motion';
+import React from 'react';
+import { authStore } from '@crypthub/store';
 
 const ResetPasswordForm: React.FC = () => {
   return (
