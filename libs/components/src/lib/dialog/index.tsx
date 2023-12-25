@@ -15,7 +15,7 @@ import {
   Divider,
   useMediaQuery,
 } from '@mui/material';
-import { BooleanState, HandleModalReducerT, SellOnMarketT } from '../types';
+import { BooleanState, HandleModalReducerT, SellOnMarketT } from './types';
 import { motion } from 'framer-motion';
 import {
   websocketStore,
@@ -34,7 +34,7 @@ import ForgotPasswordForm from './forget-password';
 import DepositForm from './deposit-form';
 import WithdrawForm from './withdraw-form';
 import SellOnMarketForm from './sell-on-market-form';
-import { MODALACTIONS } from '../constant';
+import { MODALACTIONS } from '@crypthub/store';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/dialog.scss';
 

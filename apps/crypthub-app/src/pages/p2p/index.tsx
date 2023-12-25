@@ -9,23 +9,22 @@ import {
   Slider,
   Stack,
   Typography,
-} from "@mui/material";
-import React from "react";
-import "../../styles/pages/p2p.scss";
-import ItemCard from "./item-card";
-import { motion } from "framer-motion";
-import SellButton from "./floading-sell";
-import { observer } from "mobx-react-lite";
-import p2pStore from "../../stores/p2p-store";
-import { authStore, modalStore, tourStore } from "../../stores";
-import { ConfirmationPopUp } from "../../components";
-import { Steps } from "intro.js-react";
-import { P2PTour } from "../../constant";
-import { filterContracts } from "../../functions";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+} from '@mui/material';
+import React from 'react';
+import '../../styles/pages/p2p.scss';
+import ItemCard from './item-card';
+import { motion } from 'framer-motion';
+import SellButton from './floading-sell';
+import { observer } from 'mobx-react-lite';
+import { authStore, modalStore, tourStore, p2pStore } from '@crypthub/store';
+import { ConfirmationPopUp } from '../../components';
+import { Steps } from 'intro.js-react';
+import { P2PTour } from '../../constant';
+import { filterContracts } from '../../functions';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
 const P2P: React.FC = () => {
-  const [active, setActive] = React.useState("market");
+  const [active, setActive] = React.useState('market');
   const [checked, setChecked] = React.useState([true, true]);
   const [sellModal, setSellModal] = React.useState(false);
   const [extend, setExtend] = React.useState<boolean>(false);
@@ -56,7 +55,7 @@ const P2P: React.FC = () => {
 
   React.useEffect(() => {
     if (authStore.user === null) {
-      setActive("market");
+      setActive('market');
     }
   }, [authStore.user]);
 
@@ -81,7 +80,7 @@ const P2P: React.FC = () => {
               />
             }
           />
-          <Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
             <FormControlLabel
               label="ETH"
               control={
@@ -97,7 +96,7 @@ const P2P: React.FC = () => {
           </Box>
         </div>
 
-        <div className={`filter-slider ${extend && "extend"}`}>
+        <div className={`filter-slider ${extend && 'extend'}`}>
           <Divider />
           <Typography variant="body2" id="price-slider">
             Price Range:
@@ -135,13 +134,13 @@ const P2P: React.FC = () => {
       <div className="market-card">
         <Stack direction="row" className="p2p-head-stack">
           <Button
-            onClick={() => setActive("market")}
+            onClick={() => setActive('market')}
             className={
               authStore.user === null
-                ? "toggle-market-btn-width"
-                : active !== "market"
-                ? "bg-color"
-                : ""
+                ? 'toggle-market-btn-width'
+                : active !== 'market'
+                ? 'bg-color'
+                : ''
             }
             id="market-tour"
           >
@@ -149,8 +148,8 @@ const P2P: React.FC = () => {
           </Button>
           {authStore.user !== null && (
             <Button
-              onClick={() => setActive("ongoing")}
-              className={active !== "ongoing" ? "bg-color" : ""}
+              onClick={() => setActive('ongoing')}
+              className={active !== 'ongoing' ? 'bg-color' : ''}
               id="ongoing-tour"
             >
               On Going
@@ -158,7 +157,7 @@ const P2P: React.FC = () => {
           )}
           <motion.div
             className="p2p-indicator"
-            animate={active === "market" ? { x: 0 } : { x: "100%" }}
+            animate={active === 'market' ? { x: 0 } : { x: '100%' }}
           />
         </Stack>
 
@@ -167,7 +166,7 @@ const P2P: React.FC = () => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
         >
-          {active === "market" ? (
+          {active === 'market' ? (
             p2pStore.p2p_contracts.length === 0 ? (
               <div className="absolute-middle">No Contract</div>
             ) : (

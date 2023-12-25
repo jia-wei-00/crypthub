@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
 class ModalStoreImplementation {
   confirmation_modal: {
@@ -22,7 +22,7 @@ class ModalStoreImplementation {
   };
 
   verify_email_modal: boolean = false;
-  verify_email: string = "";
+  verify_email: string = '';
 
   constructor() {
     makeObservable(this, {
@@ -55,6 +55,6 @@ class ModalStoreImplementation {
   }
 }
 
-const modalStore = new ModalStoreImplementation();
+export const modalStore = new ModalStoreImplementation();
 
 export default modalStore;
