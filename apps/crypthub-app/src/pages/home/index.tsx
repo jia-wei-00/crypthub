@@ -1,11 +1,11 @@
-import React from "react";
-import Chart from "./chart";
-import "../../styles/pages/home.scss";
-import Action from "./action";
-import { Fab } from "@mui/material";
-import { Settings } from "@mui/icons-material";
-import { ChartSettingsDialog } from "../../components";
-import { motion } from "framer-motion";
+import React from 'react';
+import '../../styles/pages/home.scss';
+import { Chart } from '@crypthub/chart';
+import Action from './action';
+import { Fab } from '@mui/material';
+import { Settings } from '@mui/icons-material';
+import { ChartSettingsDialog } from '../../components';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const [openSettings, setOpenSettings] = React.useState<boolean>(false);
@@ -14,7 +14,7 @@ const Home = () => {
     <div className="chart-container">
       <Chart />
       <motion.div
-        initial={{ opacity: 0, translateY: "100%" }}
+        initial={{ opacity: 0, translateY: '100%' }}
         animate={{ opacity: 1, translateY: 0 }}
         className="action-column"
       >
@@ -24,11 +24,11 @@ const Home = () => {
           whileHover={{ rotate: 90 }}
           whileTap={{
             rotate: -90,
-            borderRadius: "100%",
+            borderRadius: '100%',
           }}
           animate={{
-            translateY: "-45px",
-            translateX: "5px",
+            translateY: '-45px',
+            translateX: '5px',
           }}
           className="floating-icon"
         >
