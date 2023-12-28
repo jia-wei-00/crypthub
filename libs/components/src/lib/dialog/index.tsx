@@ -15,7 +15,11 @@ import {
   Divider,
   useMediaQuery,
 } from '@mui/material';
-import { BooleanState, HandleModalReducerT, SellOnMarketT } from './types';
+import {
+  BooleanState,
+  HandleModalReducerT,
+  SellOnMarketT,
+} from '../form/types';
 import { motion } from 'framer-motion';
 import {
   websocketStore,
@@ -25,18 +29,17 @@ import {
   tourStore,
   walletStore,
 } from '@crypthub/store';
-import LoginForm from './login-form';
-import RegisterForm from './register-form';
+import { LoginForm, RegisterForm } from '../..';
 import { ArrowRightAlt, CandlestickChart, Timeline } from '@mui/icons-material';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import ForgotPasswordForm from './forget-password';
-import DepositForm from './deposit-form';
-import WithdrawForm from './withdraw-form';
-import SellOnMarketForm from './sell-on-market-form';
 import { MODALACTIONS } from '@crypthub/store';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/dialog.scss';
+import DepositForm from '../form/deposit-form';
+import WithdrawForm from '../form/withdraw-form';
+import SellOnMarketForm from '../form/sell-on-market-form';
+import ForgotPasswordForm from '../form/forget-password';
 
 export const ForgotPasswordDialog: React.FC<HandleModalReducerT> = ({
   modal,
