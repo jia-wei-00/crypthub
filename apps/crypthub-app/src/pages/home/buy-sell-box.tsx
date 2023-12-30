@@ -10,7 +10,7 @@ import {
 } from '@crypthub/store';
 import { AddP2PContractFormT, BuySellBoxT } from '../../types';
 import { BTCIcon, ETHIcon, USDIcon } from '../../assets/icons';
-import { ConfirmationPopUp, CurrencyInput } from '../../components';
+import { ConfirmationPopUp, CurrencyInput } from '@crypthub/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { priceSchema } from '../../schemas';

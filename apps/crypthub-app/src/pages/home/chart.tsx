@@ -2,7 +2,7 @@ import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import { observer } from 'mobx-react-lite';
-import { Loading } from '../../components';
+import { Loading } from '@crypthub/components';
 import { modeStore, websocketStore } from '@crypthub/store';
 
 interface ChartTypes {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { authStore } from '@crypthub/store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from './schemas';
-import { HandleModalReducerT, InputData } from '../../types';
+import { HandleModalReducerT, InputData } from './types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import {
