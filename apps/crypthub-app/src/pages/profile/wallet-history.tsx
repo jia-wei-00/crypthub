@@ -14,7 +14,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { WalletHistoryT, WalletHistoryColumn } from '../../types';
 import dayjs, { Dayjs } from 'dayjs';
 import { Typography } from '@mui/material';
-import { Loading } from '../../components';
+import { Loading } from '@crypthub/components';
 
 const columns: readonly WalletHistoryColumn[] = [
   { id: 'type', label: 'Type', minWidth: 100 },
@@ -92,7 +92,7 @@ function WalletHistory() {
               {loadingStore.history_loading ? (
                 <TableRow className="absolute-middle">
                   <TableCell>
-                    <Loading height={'30px'} width={'30px'} />
+                    <Loading height={30} width={30} />
                   </TableCell>
                 </TableRow>
               ) : historyStore.wallet_history.length > 0 ? (

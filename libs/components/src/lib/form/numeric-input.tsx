@@ -1,11 +1,11 @@
-import React from "react";
-import { Controller } from "react-hook-form";
-import { NumericFormat } from "react-number-format";
-import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
-import { Remove, Add } from "@mui/icons-material";
-import { CurrencyFormatterT } from "../types";
+import React from 'react';
+import { Controller } from 'react-hook-form';
+import { NumericFormat } from 'react-number-format';
+import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Remove, Add } from '@mui/icons-material';
+import { CurrencyFormatterT } from './types';
 
-const CurrencyInput: React.FC<CurrencyFormatterT> = ({
+export const CurrencyInput: React.FC<CurrencyFormatterT> = ({
   control,
   errors,
   getValues,
@@ -45,7 +45,7 @@ const CurrencyInput: React.FC<CurrencyFormatterT> = ({
               ),
             }}
             inputProps={{
-              inputMode: "numeric",
+              inputMode: 'numeric',
             }}
             label={label}
             variant="standard"

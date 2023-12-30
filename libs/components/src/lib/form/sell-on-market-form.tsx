@@ -1,7 +1,7 @@
-import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { AddP2PContractFormT, SellOnMarketT } from "../types";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { SellOnMarketT } from './types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   FormControl,
@@ -9,14 +9,20 @@ import {
   MenuItem,
   Select,
   Typography,
-} from "@mui/material";
-import { addP2PSchema } from "../schemas";
-import { modalStore, p2pStore, tourStore, websocketStoreP2P } from "../stores";
-import { observer } from "mobx-react-lite";
-import CurrencyInput from "./numeric-input";
-import { Loading } from ".";
-import { Steps } from "intro.js-react";
-import { sellP2PModalTour } from "../constant";
+} from '@mui/material';
+import { addP2PSchema } from './schemas';
+import {
+  modalStore,
+  p2pStore,
+  tourStore,
+  websocketStoreP2P,
+  AddP2PContractFormT,
+} from '@crypthub/store';
+import { observer } from 'mobx-react-lite';
+import CurrencyInput from './numeric-input';
+import { Loading } from '@crypthub/components';
+import { Steps } from 'intro.js-react';
+import { sellP2PModalTour } from '../constant';
 
 const SellOnMarketForm: React.FC<SellOnMarketT> = ({ setSellModal }) => {
   const [coinAmount, setCoinAmount] = React.useState<number>(0);
@@ -38,8 +44,8 @@ const SellOnMarketForm: React.FC<SellOnMarketT> = ({ setSellModal }) => {
   });
 
   React.useEffect(() => {
-    setCoinAmount(Number(getValues("coin_amount")));
-  }, [watch("coin_amount")]);
+    setCoinAmount(Number(getValues('coin_amount')));
+  }, [watch('coin_amount')]);
 
   React.useEffect(() => {
     if (websocketStoreP2P.ticks === 0) {
@@ -60,7 +66,7 @@ const SellOnMarketForm: React.FC<SellOnMarketT> = ({ setSellModal }) => {
   const onSubmitHandler: SubmitHandler<AddP2PContractFormT> = (values) => {
     modalStore.setConfirmationModal(
       () => p2pStore.addP2PContract(values, setSellModal),
-      "sell_p2p",
+      'sell_p2p',
       null,
       websocketStoreP2P.currency,
       null,
@@ -74,12 +80,12 @@ const SellOnMarketForm: React.FC<SellOnMarketT> = ({ setSellModal }) => {
       <form onSubmit={handleSubmit(onSubmitHandler)} className="deposit-form">
         Insert the details
         <span className="add-contract-current-price">
-          <Typography sx={{ margin: "0 10px" }}>Current Price:</Typography>
+          <Typography sx={{ margin: '0 10px' }}>Current Price:</Typography>
           {websocketStoreP2P.ticks === 0 ? (
-            <Loading height={"20px"} width={"20px"} />
+            <Loading height={20} width={20} />
           ) : (
             websocketStoreP2P.ticks *
-            (watch("coin_amount")! === 0 ? 1 : watch("coin_amount")!)
+            (watch('coin_amount')! === 0 ? 1 : watch('coin_amount')!)
           )}
         </span>
         <FormControl fullWidth>

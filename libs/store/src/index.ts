@@ -10,3 +10,4 @@ export * from './lib/trade-store';
 export * from './lib/modal-store';
 export * from './lib/tour-store';
 export * from './constant';
+export * from './types';

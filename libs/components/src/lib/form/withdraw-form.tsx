@@ -1,12 +1,12 @@
-import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { HandleModalReducerT, PriceT } from "../types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { walletStore } from "../stores";
-import { Button } from "@mui/material";
-import { depositSchema } from "../schemas";
-import { MODALACTIONS } from "../constant";
-import CurrencyInput from "./numeric-input";
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { HandleModalReducerT, PriceT } from './types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { walletStore } from '@crypthub/store';
+import { Button } from '@mui/material';
+import { depositSchema } from './schemas';
+import { MODALACTIONS } from '@crypthub/store';
+import CurrencyInput from './numeric-input';
 
 const WithdrawForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
   const {

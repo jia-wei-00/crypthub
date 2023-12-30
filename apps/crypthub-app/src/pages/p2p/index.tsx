@@ -17,7 +17,7 @@ import { motion } from 'framer-motion';
 import SellButton from './floading-sell';
 import { observer } from 'mobx-react-lite';
 import { authStore, modalStore, tourStore, p2pStore } from '@crypthub/store';
-import { ConfirmationPopUp } from '../../components';
+import { ConfirmationPopUp } from '@crypthub/components';
 import { Steps } from 'intro.js-react';
 import { P2PTour } from '../../constant';
 import { filterContracts } from '../../functions';

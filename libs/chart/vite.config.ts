@@ -37,15 +37,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        '@crypthub/store',
-        '@crypthub/types',
-        '@crypthub/components',
-        '@crypthub/testing',
-      ],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
   },
 });

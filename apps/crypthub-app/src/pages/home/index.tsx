@@ -4,7 +4,7 @@ import { Chart } from '@crypthub/chart';
 import Action from './action';
 import { Fab } from '@mui/material';
 import { Settings } from '@mui/icons-material';
-import { ChartSettingsDialog } from '../../components';
+import { ChartSettingsDialog } from '@crypthub/components';
 import { motion } from 'framer-motion';
 
 const Home = () => {

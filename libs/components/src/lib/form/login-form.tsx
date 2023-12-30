@@ -1,10 +1,10 @@
-import * as React from "react";
-import { authStore } from "../stores";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../schemas";
-import { HandleModalReducerT, InputData } from "../types";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { motion } from "framer-motion";
+import * as React from 'react';
+import { authStore, MODALACTIONS } from '@crypthub/store';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema } from './schemas';
+import { HandleModalReducerT, InputData } from './types';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 import {
   Box,
   Button,
@@ -14,17 +14,16 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-} from "@mui/material";
+} from '@mui/material';
 import {
   EmailRounded,
   Lock,
   Visibility,
   VisibilityOff,
-} from "@mui/icons-material";
-import "../styles/components/login-form.scss";
-import { MODALACTIONS } from "../constant";
+} from '@mui/icons-material';
+import '../styles/login-form.scss';
 
-const LoginForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
+export const LoginForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   const {
@@ -54,40 +53,36 @@ const LoginForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
     >
       {/* Email Input */}
       <Box
-        className={`${
-          !!errors["email"] ? "flex-center" : "flex-end"
-        } box mt-10`}
+        className={`${errors['email'] ? 'flex-center' : 'flex-end'} box mt-10`}
       >
         <EmailRounded className="icon" />
         <FormControl variant="standard" className="form-control">
-          <InputLabel error={!!errors["email"]} htmlFor="standard-email">
+          <InputLabel error={!!errors['email']} htmlFor="standard-email">
             Email
           </InputLabel>
           <Input
-            error={!!errors["email"]}
+            error={!!errors['email']}
             type="email"
-            {...register("email")}
+            {...register('email')}
           />
-          <FormHelperText error={!!errors["email"]}>
-            {errors["email"] ? errors["email"].message : ""}
+          <FormHelperText error={!!errors['email']}>
+            {errors['email'] ? errors['email'].message : ''}
           </FormHelperText>
         </FormControl>
       </Box>
       {/* Password Input */}
-      <Box
-        className={`${!!errors["password"] ? "flex-center" : "flex-end"} box`}
-      >
+      <Box className={`${errors['password'] ? 'flex-center' : 'flex-end'} box`}>
         <Lock className="icon" />
         <FormControl variant="standard">
           <InputLabel
-            error={!!errors["password"]}
+            error={!!errors['password']}
             htmlFor="standard-adornment-password"
           >
             Password
           </InputLabel>
           <Input
-            type={showPassword ? "text" : "password"}
-            error={!!errors["password"]}
+            type={showPassword ? 'text' : 'password'}
+            error={!!errors['password']}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -99,10 +94,10 @@ const LoginForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
                 </IconButton>
               </InputAdornment>
             }
-            {...register("password")}
+            {...register('password')}
           />
-          <FormHelperText error={!!errors["password"]}>
-            {errors["password"] ? errors["password"].message : ""}
+          <FormHelperText error={!!errors['password']}>
+            {errors['password'] ? errors['password'].message : ''}
           </FormHelperText>
           <div className="forget-password">
             <span>

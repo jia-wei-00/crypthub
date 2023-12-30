@@ -8,7 +8,7 @@ import {
   ResetPassword,
   User,
 } from '../../types';
-import { MODALACTIONS } from '../constant';
+import { MODALACTIONS } from '../../constant';
 import Cookies from 'js-cookie';
 import db, { auth } from '../../firebase';
 import { FirebaseError } from '@firebase/util';

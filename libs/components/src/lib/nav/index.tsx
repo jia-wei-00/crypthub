@@ -1,9 +1,14 @@
 import * as React from 'react';
-import { authStore, modeStore, tourStore, walletStore } from '@crypthub/store';
-import { MODALACTIONS, pages, settings } from '../constant';
+import {
+  authStore,
+  modeStore,
+  tourStore,
+  walletStore,
+  MODALACTIONS,
+} from '@crypthub/store';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/components/nav.scss';
-import CustomizedSwitches from './theme-toggle';
+import '../styles/nav.scss';
+import CustomizedSwitches from '../theme-toggle';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
@@ -29,9 +34,9 @@ import {
   DepositDialog,
   ForgotPasswordDialog,
   WithdrawDialog,
-} from '.';
+} from '../dialog';
 import logo from '../assets/logo.svg';
-import { Action, HandleModalReducerT, ModalState } from '../types';
+import { Action, HandleModalReducerT, ModalState, NavProps } from './type';
 import { HelpOutline } from '@mui/icons-material';
 
 const DepositOption: React.FC<HandleModalReducerT> = ({ modal, dispatch }) => {
@@ -88,7 +93,7 @@ const reducer = (state: ModalState, action: Action): ModalState => {
   }
 };
 
-function Nav() {
+export function Nav({ pages, settings }: NavProps) {
   const [modal, dispatch] = React.useReducer(reducer, initialModal);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -329,7 +334,7 @@ function Nav() {
                   </FormControl>
                 </MenuItem>
               )}
-              {settings.map((setting) => (
+              {settings.map((setting: { title: string }) => (
                 <MenuItem
                   key={setting.title}
                   onClick={() => handleCloseUserMenu(setting.title)}

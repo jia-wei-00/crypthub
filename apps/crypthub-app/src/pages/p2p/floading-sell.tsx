@@ -1,10 +1,10 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Fab from "@mui/material/Fab";
-import { StorefrontRounded } from "@mui/icons-material";
-import { authStore } from "../../stores";
-import { SellOnMarkerPlace } from "../../components";
-import { BooleanState } from "../../types";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import { StorefrontRounded } from '@mui/icons-material';
+import { authStore } from '@crypthub/store';
+import { SellOnMarkerPlace } from '@crypthub/components';
+import { BooleanState } from '../../types';
 
 const SellButton: React.FC<BooleanState> = ({ state, setState }) => {
   const handleSellModal = () => {

@@ -13,7 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Column, Transaction } from '../../types';
 import dayjs, { Dayjs } from 'dayjs';
-import { Loading } from '../../components';
+import { Loading } from '@crypthub/components';
 import { Typography } from '@mui/material';
 
 const columns: readonly Column[] = [
@@ -106,7 +106,7 @@ function TransactionHistory() {
               {loadingStore.history_loading ? (
                 <TableRow className="absolute-middle">
                   <TableCell>
-                    <Loading height={'30px'} width={'30px'} />
+                    <Loading height={30} width={30} />
                   </TableCell>
                 </TableRow>
               ) : historyStore.transaction.length > 0 ? (

@@ -1,12 +1,15 @@
-import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { AddP2PContractFormT, HandleModalReducerT, PriceT } from "../types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { walletStore } from "../stores";
-import { Button } from "@mui/material";
-import { depositSchema } from "../schemas";
-import { MODALACTIONS } from "../constant";
-import CurrencyInput from "./numeric-input";
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { HandleModalReducerT, PriceT } from './types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  walletStore,
+  MODALACTIONS,
+  AddP2PContractFormT,
+} from '@crypthub/store';
+import { Button } from '@mui/material';
+import { depositSchema } from './schemas';
+import CurrencyInput from './numeric-input';
 
 const DepositForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
   const {

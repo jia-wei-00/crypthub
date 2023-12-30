@@ -1,9 +1,9 @@
-import * as React from "react";
-import { authStore } from "../stores";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { forgetPasswordSchema } from "../schemas";
-import { HandleModalReducerT, InputData } from "../types";
-import { SubmitHandler, useForm } from "react-hook-form";
+import * as React from 'react';
+import { authStore } from '@crypthub/store';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { forgetPasswordSchema } from './schemas';
+import { HandleModalReducerT, InputData } from './types';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   Box,
   Button,
@@ -11,9 +11,9 @@ import {
   FormHelperText,
   Input,
   InputLabel,
-} from "@mui/material";
-import { EmailRounded } from "@mui/icons-material";
-import "../styles/components/login-form.scss";
+} from '@mui/material';
+import { EmailRounded } from '@mui/icons-material';
+import '../styles/login-form.scss';
 
 const ForgotPasswordForm: React.FC<HandleModalReducerT> = ({
   modal,
@@ -42,19 +42,19 @@ const ForgotPasswordForm: React.FC<HandleModalReducerT> = ({
     <form className="mt-10 form" onSubmit={handleSubmit(onSubmitHandler)}>
       {/* Email Input */}
       Fill in your email to reset
-      <Box className={`${!!errors["email"] ? "flex-center" : "flex-end"} box`}>
+      <Box className={`${!!errors['email'] ? 'flex-center' : 'flex-end'} box`}>
         <EmailRounded className="icon" />
         <FormControl variant="standard" className="form-control">
-          <InputLabel error={!!errors["email"]} htmlFor="standard-email">
+          <InputLabel error={!!errors['email']} htmlFor="standard-email">
             Email
           </InputLabel>
           <Input
-            error={!!errors["email"]}
+            error={!!errors['email']}
             type="email"
-            {...register("email")}
+            {...register('email')}
           />
-          <FormHelperText error={!!errors["email"]}>
-            {errors["email"] ? errors["email"].message : ""}
+          <FormHelperText error={!!errors['email']}>
+            {errors['email'] ? errors['email'].message : ''}
           </FormHelperText>
         </FormControl>
       </Box>

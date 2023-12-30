@@ -1,0 +1,157 @@
+@import './variables';
+
+#menu-appbar {
+  top: 40px;
+  transition: initial !important;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-bar {
+  transition: $transition-all;
+  backdrop-filter: blur(15px);
+  position: sticky !important;
+  top: 0;
+  z-index: 999;
+
+  .nav-end {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    & > .login-btn {
+      height: 30px;
+    }
+  }
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 50px;
+
+  @media only screen and (max-width: 1023px) {
+    column-gap: 0;
+  }
+}
+
+.link-column {
+  display: flex;
+  flex-grow: 1;
+  column-gap: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .desktop-hide {
+    display: none !important;
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  max-width: 450px;
+
+  .form-body {
+    z-index: 10;
+  }
+
+  .icon {
+    padding: 0 10px 4px 0;
+  }
+
+  & > div > .card {
+    position: relative;
+    padding: 10px;
+
+    & > .content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    position: relative;
+
+    & > button {
+      flex: 1;
+      z-index: 10;
+    }
+
+    & > .indicator {
+      position: absolute;
+      height: 100%;
+      border-radius: 5px;
+      width: 50%;
+      left: 0;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+
+  .box {
+    display: flex;
+  }
+
+  .flex-end {
+    align-items: flex-end;
+  }
+
+  .flex-center {
+    align-items: center;
+  }
+
+  .form-control {
+    flex-grow: 1;
+  }
+}
+
+.deposit {
+  width: 100% !important;
+}
+
+.deposit-form {
+  text-align: center;
+
+  .deposit-input-box {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      text-align: center;
+    }
+  }
+}
+
+#light {
+  .indicator {
+    background-color: $main-color !important;
+  }
+
+  .menu-icon {
+    svg {
+      color: $main-color !important;
+    }
+  }
+}
