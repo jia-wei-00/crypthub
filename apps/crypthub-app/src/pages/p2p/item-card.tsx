@@ -1,32 +1,32 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Bitcoin from "../../assets/bitcoin.svg";
-import Ethereum from "../../assets/ethereum.svg";
-import { ItemCardT } from "../../types";
-import { authStore, modalStore, p2pStore } from "../../stores";
-import { observer } from "mobx-react-lite";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Bitcoin from '../../assets/bitcoin.svg';
+import Ethereum from '../../assets/ethereum.svg';
+import { ItemCardT } from '../../types';
+import { authStore, modalStore, p2pStore } from '@crypthub/store';
+import { observer } from 'mobx-react-lite';
 
 const ItemCard: React.FC<ItemCardT> = ({ active, contract }) => {
   const buyContract = () => {
     if (authStore.user !== null) {
-      active === "market"
+      active === 'market'
         ? modalStore.setConfirmationModal(
             () => p2pStore.buyContract(contract),
-            "buy_p2p",
+            'buy_p2p',
             null,
-            "USD",
+            'USD',
             contract.currency,
             contract.coin_amount,
             contract.selling_price
           )
         : modalStore.setConfirmationModal(
             () => p2pStore.withdrawContract(contract),
-            "delete",
+            'delete',
             null,
             null,
             contract.currency,
@@ -43,14 +43,14 @@ const ItemCard: React.FC<ItemCardT> = ({ active, contract }) => {
       <Card className="market-card">
         {authStore.user !== null &&
           authStore.user.id === contract.seller_id &&
-          active === "market" && <div className="owned-contract" />}
+          active === 'market' && <div className="owned-contract" />}
 
         <CardMedia
           component="img"
           alt="green iguana"
           height="100"
-          sx={{ objectFit: "contain" }}
-          image={contract.currency === "BTC" ? Bitcoin : Ethereum}
+          sx={{ objectFit: 'contain' }}
+          image={contract.currency === 'BTC' ? Bitcoin : Ethereum}
         />
         <CardContent className="card-content">
           <Typography gutterBottom variant="h5" component="div">
@@ -64,8 +64,8 @@ const ItemCard: React.FC<ItemCardT> = ({ active, contract }) => {
           </Typography>
         </CardContent>
 
-        <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          {active === "market" ? (
+        <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+          {active === 'market' ? (
             <Button
               size="small"
               onClick={buyContract}

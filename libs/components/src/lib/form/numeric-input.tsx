@@ -5,7 +5,7 @@ import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
 import { Remove, Add } from '@mui/icons-material';
 import { CurrencyFormatterT } from './types';
 
-const CurrencyInput: React.FC<CurrencyFormatterT> = ({
+export const CurrencyInput: React.FC<CurrencyFormatterT> = ({
   control,
   errors,
   getValues,

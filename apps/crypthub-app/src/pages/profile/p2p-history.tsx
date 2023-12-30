@@ -14,7 +14,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { P2PCompletedHistoryColumn, P2PCompletedHistoryT } from '../../types';
 import dayjs, { Dayjs } from 'dayjs';
 import { Typography } from '@mui/material';
-import { Loading } from '../../components';
+import { Loading } from '@crypthub/components';
 
 const columns: readonly P2PCompletedHistoryColumn[] = [
   { id: 'transaction_type', label: 'Type', align: 'right', minWidth: 100 },

@@ -35,7 +35,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { MODALACTIONS } from '@crypthub/store';
 import { useNavigate } from 'react-router-dom';
-import '../styles/components/dialog.scss';
+import '../styles/dialog.scss';
 import DepositForm from '../form/deposit-form';
 import WithdrawForm from '../form/withdraw-form';
 import SellOnMarketForm from '../form/sell-on-market-form';

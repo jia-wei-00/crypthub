@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { authStore } from '@crypthub/store';
+import { authStore, MODALACTIONS } from '@crypthub/store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from './schemas';
 import { HandleModalReducerT, InputData } from './types';
@@ -21,8 +21,7 @@ import {
   Visibility,
   VisibilityOff,
 } from '@mui/icons-material';
-import '../styles/components/login-form.scss';
-import { MODALACTIONS } from '@crypthub/store';
+import '../styles/login-form.scss';
 
 export const LoginForm: React.FC<HandleModalReducerT> = ({ dispatch }) => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);

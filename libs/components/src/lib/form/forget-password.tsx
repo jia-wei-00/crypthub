@@ -13,7 +13,7 @@ import {
   InputLabel,
 } from '@mui/material';
 import { EmailRounded } from '@mui/icons-material';
-import '../styles/components/login-form.scss';
+import '../styles/login-form.scss';
 
 const ForgotPasswordForm: React.FC<HandleModalReducerT> = ({
   modal,
