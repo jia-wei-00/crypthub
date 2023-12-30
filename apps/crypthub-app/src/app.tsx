@@ -5,7 +5,7 @@ import './styles/main.scss';
 import { authStore, modeStore, tourStore } from '@crypthub/store';
 import { observer } from 'mobx-react-lite';
 import { ToastContainer } from 'react-toastify';
-import { Nav, TourDialog } from './components';
+import { Nav, TourDialog } from '@crypthub/components';
 import { homeTour, pages } from './constant';
 import { ErrorPage, Profile } from './pages';
 import Auth from './auth';
