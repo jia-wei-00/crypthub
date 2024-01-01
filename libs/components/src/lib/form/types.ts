@@ -6,6 +6,7 @@ import {
   UseFormGetValues,
   UseFormSetValue,
 } from 'react-hook-form';
+import { FAQDataProps } from '../faq/type';
 
 export type BooleanState = {
   state: boolean;
@@ -54,4 +55,25 @@ export type CurrencyFormatterT = {
   currency: string;
   name: keyof AddP2PContractFormT;
   label?: string;
+};
+
+export type BooleanStateT = {
+  state: boolean;
+  setState: Dispatch<SetStateAction<boolean>>;
+  faq_data: FAQDataProps[];
+};
+
+export type ModalStateT = {
+  crypthub_trader_modal: boolean;
+  p2p_trader_modal: boolean;
+};
+
+export type ActionT = {
+  type: string;
+};
+
+export type ModalPropsT = {
+  modal: ModalStateT;
+  dispatch: Dispatch<ActionT>;
+  data: { image: string; details: string }[];
 };

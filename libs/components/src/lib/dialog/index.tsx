@@ -14,11 +14,15 @@ import {
   DialogTitle,
   Divider,
   useMediaQuery,
+  DialogContentText,
+  Zoom,
 } from '@mui/material';
 import {
   BooleanState,
   HandleModalReducerT,
   SellOnMarketT,
+  BooleanStateT,
+  ModalPropsT,
 } from '../form/types';
 import { motion } from 'framer-motion';
 import {
@@ -40,6 +44,8 @@ import DepositForm from '../form/deposit-form';
 import WithdrawForm from '../form/withdraw-form';
 import SellOnMarketForm from '../form/sell-on-market-form';
 import ForgotPasswordForm from '../form/forget-password';
+import { SwiperComponents } from '../swiper';
+import { FAQAccordions } from '../faq';
 
 export const ForgotPasswordDialog: React.FC<HandleModalReducerT> = ({
   modal,
@@ -575,3 +581,73 @@ export const TourDialog: React.FC = observer(() => {
     </Dialog>
   );
 });
+
+export const CrypthubTraderDialog = ({
+  modal,
+  dispatch,
+  data,
+}: ModalPropsT) => {
+  return (
+    <Dialog
+      open={modal.crypthub_trader_modal}
+      onClose={() => dispatch({ type: MODALACTIONS.CRYPTHUB_MODAL })}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      fullWidth
+      maxWidth="lg"
+      TransitionComponent={Zoom}
+    >
+      <DialogTitle id="alert-dialog-title">Crypthub Trader</DialogTitle>
+      <DialogContent>
+        <DialogContentText
+          id="alert-dialog-description"
+          sx={{ overflow: 'hidden' }}
+        >
+          <SwiperComponents data={data} />
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export const P2PTraderDialog = ({ modal, dispatch, data }: ModalPropsT) => {
+  return (
+    <Dialog
+      open={modal.p2p_trader_modal}
+      onClose={() => dispatch({ type: MODALACTIONS.P2P_MODAL })}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      fullWidth
+      maxWidth="lg"
+      TransitionComponent={Zoom}
+    >
+      <DialogTitle id="alert-dialog-title">P2P TRADER</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          <SwiperComponents data={data} />
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export const FAQDialog = ({ state, setState, faq_data }: BooleanStateT) => {
+  return (
+    <Dialog
+      open={state}
+      onClose={() => setState(false)}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      fullWidth
+      maxWidth="lg"
+      TransitionComponent={Zoom}
+    >
+      <DialogTitle id="alert-dialog-title">FAQ</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          <FAQAccordions data={faq_data} />
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+  );
+};
