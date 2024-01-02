@@ -1,14 +1,35 @@
-import { Button, Container, useMediaQuery } from "@mui/material";
-import React from "react";
-import "../styles/components/hero.scss";
-import { motion } from "framer-motion";
-import ScrollText from "./scroll-text";
-import { SectionT } from "../type";
-import FAQAccordions from "./faq";
-import { FAQDialog } from "./dialog";
+import { Button, Container, useMediaQuery } from '@mui/material';
+import React from 'react';
+import '../styles/hero.scss';
+import { motion } from 'framer-motion';
+import ScrollText from '../scroll-text';
+import { FAQAccordions } from '../faq';
+import { FAQDialog } from '../dialog';
+import { FAQDataProps } from '../faq/type';
 
-const FAQSection: React.FC<SectionT> = ({ title, desc, scrol_text }) => {
-  const matches = useMediaQuery("(max-width:600px)");
+export type SectionT = {
+  title?: string;
+  subtitle?: string;
+  desc?: string;
+  link_btn?: {
+    title: string;
+    link: string;
+  };
+  type?: string;
+  scrol_text: {
+    main: string;
+    sub: string;
+  };
+  faq_data?: FAQDataProps[];
+};
+
+const FAQSection: React.FC<SectionT> = ({
+  title,
+  desc,
+  scrol_text,
+  faq_data,
+}) => {
+  const matches = useMediaQuery('(max-width:600px)');
   const [faqModal, setFaqModal] = React.useState(false);
 
   return (
@@ -18,7 +39,7 @@ const FAQSection: React.FC<SectionT> = ({ title, desc, scrol_text }) => {
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ ease: "linear", delay: 0.5, duration: 0.3 }}
+            transition={{ ease: 'linear', delay: 0.5, duration: 0.3 }}
             className="logo"
           >
             {title}
@@ -26,7 +47,7 @@ const FAQSection: React.FC<SectionT> = ({ title, desc, scrol_text }) => {
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ ease: "linear", delay: 1.3, duration: 0.2 }}
+            transition={{ ease: 'linear', delay: 1.3, duration: 0.2 }}
             className="desc"
           >
             {desc}
@@ -34,11 +55,11 @@ const FAQSection: React.FC<SectionT> = ({ title, desc, scrol_text }) => {
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ ease: "linear", delay: 1.5, duration: 0.2 }}
+            transition={{ ease: 'linear', delay: 1.5, duration: 0.2 }}
             className="title"
           >
             {!matches ? (
-              <FAQAccordions />
+              <FAQAccordions data={faq_data!} />
             ) : (
               <Button variant="contained" onClick={() => setFaqModal(true)}>
                 Details
@@ -48,7 +69,7 @@ const FAQSection: React.FC<SectionT> = ({ title, desc, scrol_text }) => {
         </Container>
         <ScrollText main={scrol_text.main} sub={scrol_text.sub} />
       </div>
-      <FAQDialog state={faqModal} setState={setFaqModal} />
+      <FAQDialog state={faqModal} setState={setFaqModal} faq_data={faq_data!} />
     </>
   );
 };

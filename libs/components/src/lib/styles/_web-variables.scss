@@ -1,0 +1,20 @@
+// Global Color
+$main-color: #2c3639;
+$secondary-color: #3f4e4f;
+$tertiary-color: #a27b5c;
+$quaternary-color: #dcd7c9;
+$white-color: #ffffff;
+
+// Global transition
+$transition-all: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+$box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+
+// Global Font Size
+$text-extra-small: 0.8rem;
+$text-small: 1rem;
+$text-normal: 1.5rem;
+$text-medium: calc(1.5rem + 1vw);
+$text-large: 3.2rem;
+$text-extra-large: 4.8rem;
+$text-title: 6.4rem;

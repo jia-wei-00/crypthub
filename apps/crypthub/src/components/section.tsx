@@ -1,11 +1,16 @@
-import { Button, Container } from "@mui/material";
-import React from "react";
-import "../styles/components/hero.scss";
-import { motion } from "framer-motion";
-import ScrollText from "./scroll-text";
-import { ActionT, ModalStateT, SectionT } from "../type";
-import { MODALACTIONS, initialModals } from "../constant";
-import { CrypthubTraderDialog, P2PTraderDialog } from "./dialog";
+import { Button, Container } from '@mui/material';
+import React from 'react';
+import '../styles/components/hero.scss';
+import { motion } from 'framer-motion';
+import { ScrollText } from '@crypthub/components';
+import { ActionT, ModalStateT, SectionT } from '../type';
+import {
+  MODALACTIONS,
+  crypthub_data,
+  initialModals,
+  p2p_data,
+} from '../constant';
+import { CrypthubTraderDialog, P2PTraderDialog } from '@crypthub/components';
 
 const reducer = (state: ModalStateT, action: ActionT) => {
   switch (action.type) {
@@ -35,7 +40,7 @@ const Section: React.FC<SectionT> = ({
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ ease: "linear", delay: 0.5, duration: 0.3 }}
+            transition={{ ease: 'linear', delay: 0.5, duration: 0.3 }}
             className="logo"
           >
             {title}
@@ -44,7 +49,7 @@ const Section: React.FC<SectionT> = ({
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               whileInView={{ scaleY: 1, opacity: 1 }}
-              transition={{ ease: "linear", delay: 1.3, duration: 0.2 }}
+              transition={{ ease: 'linear', delay: 1.3, duration: 0.2 }}
               className="title"
             >
               {subtitle}
@@ -54,7 +59,7 @@ const Section: React.FC<SectionT> = ({
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               whileInView={{ scaleY: 1, opacity: 1 }}
-              transition={{ ease: "linear", delay: 1.3, duration: 0.2 }}
+              transition={{ ease: 'linear', delay: 1.3, duration: 0.2 }}
               className="desc"
             >
               {desc}
@@ -63,7 +68,7 @@ const Section: React.FC<SectionT> = ({
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ ease: "linear", delay: 1.8, duration: 0.3 }}
+            transition={{ ease: 'linear', delay: 1.8, duration: 0.3 }}
             className="trade-btn"
           >
             {link_btn && (
@@ -83,8 +88,12 @@ const Section: React.FC<SectionT> = ({
         </Container>
         <ScrollText main={scrol_text.main} sub={scrol_text.sub} />
       </div>
-      <CrypthubTraderDialog modal={modal} dispatch={dispatch} />
-      <P2PTraderDialog modal={modal} dispatch={dispatch} />
+      <CrypthubTraderDialog
+        modal={modal}
+        dispatch={dispatch}
+        data={crypthub_data}
+      />
+      <P2PTraderDialog modal={modal} dispatch={dispatch} data={p2p_data} />
     </>
   );
 };

@@ -1,23 +1,31 @@
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-cube";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/effect-cube';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-import "../styles/components/swiper.scss";
+import '../styles/swiper.scss';
 
 // import required modules
-import { EffectCube, Pagination, Navigation } from "swiper/modules";
-import { ImageDataSetT } from "../type";
+import { EffectCube, Pagination, Navigation } from 'swiper/modules';
 
-export default ({ data }: ImageDataSetT) => {
+export type ImageData = {
+  image: string;
+  details: string;
+};
+
+export type ImageDataSetT = {
+  data: ImageData[];
+};
+
+export const SwiperComponents = ({ data }: ImageDataSetT) => {
   return (
     <>
       <Swiper
-        effect={"cube"}
+        effect={'cube'}
         grabCursor={true}
         cubeEffect={{
           shadow: true,

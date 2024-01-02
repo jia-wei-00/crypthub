@@ -1,5 +1,5 @@
-import "../styles/components/scroll-text.scss";
-import { useRef } from "react";
+import '../styles/scroll-text.scss';
+import { useRef } from 'react';
 import {
   motion,
   useScroll,
@@ -8,8 +8,8 @@ import {
   useMotionValue,
   useVelocity,
   useAnimationFrame,
-} from "framer-motion";
-import { wrap } from "@motionone/utils";
+} from 'framer-motion';
+import { wrap } from '@motionone/utils';
 
 interface ParallaxProps {
   children: string;
@@ -77,7 +77,10 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
   );
 }
 
-const ScrollText: React.FC<{ main: string; sub: string }> = ({ main, sub }) => {
+export const ScrollText: React.FC<{ main: string; sub: string }> = ({
+  main,
+  sub,
+}) => {
   return (
     <section className="scroller-section">
       <ParallaxText baseVelocity={-5}>{main}</ParallaxText>
