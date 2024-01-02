@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeroSection } from './components';
+import { HeroSection } from '@crypthub/components';
 import './styles/main.scss';
 import { darkTheme } from './theme';
 import { ThemeProvider } from '@mui/material';

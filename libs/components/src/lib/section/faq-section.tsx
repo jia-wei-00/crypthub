@@ -1,6 +1,6 @@
 import { Button, Container, useMediaQuery } from '@mui/material';
 import React from 'react';
-import '../styles/components/hero.scss';
+import '../styles/hero.scss';
 import { motion } from 'framer-motion';
 import ScrollText from '../scroll-text';
 import { FAQAccordions } from '../faq';
@@ -20,7 +20,7 @@ export type SectionT = {
     main: string;
     sub: string;
   };
-  faq_data: FAQDataProps[];
+  faq_data?: FAQDataProps[];
 };
 
 const FAQSection: React.FC<SectionT> = ({
@@ -59,7 +59,7 @@ const FAQSection: React.FC<SectionT> = ({
             className="title"
           >
             {!matches ? (
-              <FAQAccordions data={faq_data} />
+              <FAQAccordions data={faq_data!} />
             ) : (
               <Button variant="contained" onClick={() => setFaqModal(true)}>
                 Details
@@ -69,7 +69,7 @@ const FAQSection: React.FC<SectionT> = ({
         </Container>
         <ScrollText main={scrol_text.main} sub={scrol_text.sub} />
       </div>
-      <FAQDialog state={faqModal} setState={setFaqModal} />
+      <FAQDialog state={faqModal} setState={setFaqModal} faq_data={faq_data!} />
     </>
   );
 };

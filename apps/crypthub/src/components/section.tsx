@@ -2,7 +2,7 @@ import { Button, Container } from '@mui/material';
 import React from 'react';
 import '../styles/components/hero.scss';
 import { motion } from 'framer-motion';
-import ScrollText from './scroll-text';
+import { ScrollText } from '@crypthub/components';
 import { ActionT, ModalStateT, SectionT } from '../type';
 import {
   MODALACTIONS,
